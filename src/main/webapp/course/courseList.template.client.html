@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" name="viewport"
+	content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="courseList.style.client.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	rel="stylesheet">
+<title>Course List</title>
+</head>
+<body>
+	<div class="container-fluid">
+
+		<div class="row bg-light">
+			<button type="button" class="btn btn-light col-1">
+				<i class="fas fa-bars"></i>
+			</button>
+			<label class="d-none d-sm-block col-3 col-form-label">Course
+				Manager</label>
+
+			<div class="col-sm-4 col-9">
+				<input type="text" class="form-control" id="newCourseFld"
+					placeholder="New Course Name">
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn rounded-circle">
+					<i class="fas fa-plus"></i>
+				</button>
+
+			</div>
+			<div class="col-2">
+			<a href="../login/login.template.client.html"
+				class="d-none d-sm-block">Login / SignUp</a>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+	<table class="table">
+	<thead class="thead-light">
+	<tr>
+	<th scope="col"></th>
+	<th scope="col">Title</th>
+	
+	<th scope="col"><div class="d-none d-sm-block">Owned By</div></th>
+	<th scope="col"><div class="d-none d-sm-block">Last modified</div></th>
+	<th scope="col"><div class="d-none d-sm-block"><button type="button" class="btn"><i class="fas fa-th"></i></button></div></th>
+	<th scope="col"><div class="d-none d-sm-block"><button type="button" class="btn"><i class="fas fa-sort-alpha-up"></i></button></div></th>
+	<th></th>
+	</tr>
+	</thead>
+	
+	<tr class="clickable-row">
+	<td scope="row"><i class="fas fa-book"></i></td>
+	<td>CS 5610 Web Development</td>
+	<td><div class="d-none d-sm-block">me</div></td>
+	<td><div class="d-none d-sm-block">08:46 PM</div></td>
+	<td></td>
+	<td></td>
+	<td><button type="button" class="btn"><i class="fas fa-trash-alt"></i></button></td>
+	</tr>
+	
+	<tr>
+	<td scope="row"><i class="fas fa-book"></i></td>
+	<td>CS 5010 Programming Design Paradigm</td>
+	<td><div class="d-none d-sm-block">me</div></td>
+	<td><div class="d-none d-sm-block">Yesterday</div></td>
+	<td></td>
+	<td></td>
+	<td><button type="button" class="btn"><i class="fas fa-trash-alt"></i></button></td>
+	</tr>
+	
+	
+	</table>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

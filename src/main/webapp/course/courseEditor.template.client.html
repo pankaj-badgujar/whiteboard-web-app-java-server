@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" name="viewport"
+	content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="courseList.style.client.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	rel="stylesheet">
+<script
+	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<title>Course Editor</title>
+</head>
+<body>
+	<div class="container-fluid">
+
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item">
+				<button type="button" class="btn">
+					<i class="fas fa-times"></i>
+				</button>
+			</li>
+			<li class="nav-item"><label class="col-form-label">CS
+					5610</label></li>
+			<li class="nav-item"><a class="nav-link" href="#">Build</a></li>
+			<li class="nav-item"><a class="nav-link active" href="#">Pages</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="#">Theme</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Store</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Apps</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+		</ul>
+
+		<div class="row">
+			<div class="col-3 border-right">
+				<ul class="nav flex-column  nav-pills">
+					<li class="nav-item"><a class="nav-link active" href="#">Module
+							1</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 2</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 3</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 4</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 5</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 6</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Module 7</a>
+					</li>
+					<li class="nav-item text-right">
+						<button type="button" class="btn rounded-circle">
+							<i class="fas fa-plus"></i>
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div class="col-9">
+
+				<div class="row">
+					<label class="col-5"></label>
+
+					<button type="button" class="col-1 btn btn-success">save</button>
+					<label class="col-1 col-form-label" for="toggleFld">Preview</label>
+					<input type="checkbox" id="toggleFld" class="col-2"
+						data-toggle="toggle">
+				</div>
+
+				<div id="headingSection" class="m-3">
+					<div class="row pb-3">
+						<h5>Heading Widget</h5>
+
+						<div class="col-6 d-flex justify-content-end">
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-up"></i>
+							</button>
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-down"></i>
+							</button>
+							<select class="custom-select" role="widgetType">
+								<option value="Heading">Heading</option>
+								<option value="Paragraph">Paragraph</option>
+								<option value="List">List</option>
+								<option value="Image">Image</option>
+								<option value="Link">Link</option>
+							</select>
+							<button type="button" class="btn btn-danger">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<input type="text" class="form-control" placeholder="Heading Text"
+							id="headingTextFld">
+					</div>
+					<div class="form-group row">
+						<select class="custom-select">
+							<option value="Heading1">Heading 1</option>
+							<option value="Heading2">Heading 2</option>
+							<option value="Heading3">Heading 3</option>
+						</select>
+					</div>
+
+					<div class="form-group row">
+						<input type="text" class="form-control" id="widgetNameFld"
+							placeholder="Widget name">
+					</div>
+
+					<h5 class="row">Preview</h5>
+					<h1 class="row">Heading Text</h1>
+				</div>
+
+
+
+				<div id="paragraphSection" class="m-3 border-top pt-4">
+					<div class="row pb-3">
+						<h5>Paragraph Widget</h5>
+
+						<div class="col-6 d-flex justify-content-end">
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-up"></i>
+							</button>
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-down"></i>
+							</button>
+							<select class="custom-select" role="widgetType">
+								<option value="Heading">Heading</option>
+								<option value="Paragraph">Paragraph</option>
+								<option value="List">List</option>
+								<option value="Image">Image</option>
+								<option value="Link">Link</option>
+							</select>
+							<button type="button" class="btn btn-danger">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<textarea rows="3" class="form-control">Lorem ipsum</textarea>
+					</div>
+
+					<div class="form-group row">
+						<input type="text" class="form-control" id="widgetNameParaFld"
+							placeholder="Widget name">
+					</div>
+
+					<h5 class="row">Preview</h5>
+					<p class="row">Lorem ipsum</p>
+				</div>
+
+				<div id="ListSection" class="m-3 border-top pt-4">
+					<div class="row pb-3">
+						<h5>List Widget</h5>
+
+						<div class="col-6 d-flex justify-content-end">
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-up"></i>
+							</button>
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-down"></i>
+							</button>
+							<select class="custom-select" role="widgetType">
+								<option value="Heading">Heading</option>
+								<option value="Paragraph">Paragraph</option>
+								<option value="List">List</option>
+								<option value="Image">Image</option>
+								<option value="Link">Link</option>
+							</select>
+							<button type="button" class="btn btn-danger">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<textarea rows="3" class="form-control">Put each
+item in
+a separate row</textarea>
+					</div>
+					<div class="form-group row">
+						<select class="custom-select">
+							<option value="Heading1">Unordered List</option>
+							<option value="Heading2">Ordered List</option>
+						</select>
+					</div>
+
+					<div class="form-group row">
+						<input type="text" class="form-control" id="widgetNameFld"
+							placeholder="Widget name">
+					</div>
+
+					<h5 class="row">Preview</h5>
+					<ul>
+						<li>Put each</li>
+						<li>item in</li>
+						<li>a separate row</li>
+					</ul>
+				</div>
+
+
+				<div id="ImageSection" class="m-3 border-top pt-4">
+					<div class="row pb-3">
+						<h5>Image Widget</h5>
+
+						<div class="col-6 d-flex justify-content-end">
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-up"></i>
+							</button>
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-down"></i>
+							</button>
+							<select class="custom-select" role="widgetType">
+								<option value="Heading">Heading</option>
+								<option value="Paragraph">Paragraph</option>
+								<option value="List">List</option>
+								<option value="Image">Image</option>
+								<option value="Link">Link</option>
+							</select>
+							<button type="button" class="btn btn-danger">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<input type="text" class="form-control"
+							value="http://lorempixel.com/300/150/" id="headingTextFld">
+					</div>
+
+
+					<div class="form-group row">
+						<input type="text" class="form-control" id="widgetNameFld"
+							placeholder="Widget name">
+					</div>
+
+					<h5 class="row">Preview</h5>
+					<img src="http://lorempixel.com/300/150/">
+				</div>
+
+				<div id="LinkSection" class="m-3 border-top pt-4">
+					<div class="row pb-3">
+						<h5>Link Widget</h5>
+
+						<div class="col-6 d-flex justify-content-end">
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-up"></i>
+							</button>
+							<button type="button" class="btn btn-warning">
+								<i class="fas fa-arrow-circle-down"></i>
+							</button>
+							<select class="custom-select" role="widgetType">
+								<option value="Heading">Heading</option>
+								<option value="Paragraph">Paragraph</option>
+								<option value="List">List</option>
+								<option value="Image">Image</option>
+								<option value="Link">Link</option>
+							</select>
+							<button type="button" class="btn btn-danger">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<input type="text" class="form-control" placeholder="Link URL"
+							id="linkURLFld">
+					</div>
+					<div class="form-group row">
+						<input type="text" class="form-control" placeholder="Link Text"
+							id="linkTextFld">
+					</div>
+					<div class="form-group row">
+						<input type="text" class="form-control" id="widgetNameFld"
+							placeholder="Widget name">
+					</div>
+
+					<h5 class="row">Preview</h5>
+					<a href="#">Link text</a>
+				</div>
+				<ul class="nav flex-column nav-pills">
+				<li class="nav-item text-right">
+				<button type="button" class="btn btn-danger rounded-circle ">
+					<i class="fas fa-plus"></i>
+				</button>
+				</li>
+				</ul>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
