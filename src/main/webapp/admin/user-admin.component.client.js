@@ -10,6 +10,7 @@
 	var roleFld;
 
 	var createBtn;
+	var deleteBtn;
 
 	jQuery(main);
 
@@ -23,11 +24,24 @@
 		roleFld = $('#roleFld');
 
 		createBtn = $('.wbdv-create');
+		deleteBtn = $('#wbdv-remove');
 
 		userService.findAllUsers().then(renderUsers);
 
 		createBtn.click(createUser);
+		
+		//using on() method to accomplish delegated binding for dynamically created rows
+		$(document).on('click','.wbdv-remove',deleteUser);
 
+	}
+	
+	function deleteUser(event){
+		console.log(event)
+		currentTarget = $(event.currentTarget)
+		const tr = currentTarget.parent().parent().parent()
+		const idToBeDeleted = tr.find('.wbdv-id').text()
+		
+		userService.deleteUser(idToBeDeleted).then(renderUsers);
 	}
 
 	function createUser() {
@@ -46,7 +60,11 @@
 		}
 
 		userService.createUser(newlyCreatedUser).then(renderUsers);
-
+		
+		usernameFld.val("");
+		passwordFld.val("");
+		firstNameFld.val("");
+		lastNameFld.val("");
 	}
 
 	function renderUsers(users) {
@@ -58,7 +76,8 @@
 			rowClone.find('.wbdv-username').html(user.username);
 			rowClone.find('.wbdv-first-name').html(user.firstName);
 			rowClone.find('.wbdv-last-name').html(user.lastName);
-			rowClone.find('wbdv-role').html(user.role);
+			rowClone.find('.wbdv-role').html(user.role);
+			rowClone.find('.wbdv-id').html(user.id);
 			tBody.append(rowClone);
 		}
 	}

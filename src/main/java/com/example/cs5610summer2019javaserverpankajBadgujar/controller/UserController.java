@@ -3,6 +3,7 @@ package com.example.cs5610summer2019javaserverpankajBadgujar.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,16 @@ public class UserController {
 	@PostMapping("/api/users")
 	public List<User> createUser(@RequestBody User user) {
 		users.add(user);
+		return users;
+	}
+	
+	@DeleteMapping("/api/users/{id}")
+	public List<User> deleteUser(@PathVariable String id){
+		long idLong = Long.parseLong(id);
+		User userToBeDeleted = findUserById(idLong);
+		if(userToBeDeleted != null) {
+			users.remove(userToBeDeleted);
+		}
 		return users;
 	}
 	
