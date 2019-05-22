@@ -1,45 +1,34 @@
 (function() {
-	const users = [ {
-		id : 123,
-		username : 'alice',
-		firstName : 'Alice'
-	}, {
-		id : 234,
-		username : 'bob',
-		firstName : 'Bob'
-	}, {
-		id : 345,
-		username : 'charlie',
-		firstName : 'Charlie'
-	}, {
-		id : 456,
-		username : 'dan',
-		firstName : 'Dan'
-	} ];
+	var userService = new UserService();
 
-	const rowTemplate = $('.wbdv-template')
-	const tBody = $('tbody');
-	for ( var i in users) {
-		const user = users[i];
-		const rowClone = rowTemplate.clone();
-		rowClone.removeClass('wbdv-hidden');
-		rowClone.find('.wbdv-username').html(users[i].username); 
-		tBody.append(rowClone);
+		var rowTemplate;
+		var tBody;
+		
+		jQuery(main);
+		
+		function main(){
+			rowTemplate = jQuery('.wbdv-template');
+			tBody = $('tbody');
+			
+			userService
+			.findAllUsers()
+			.then(renderUsers);
+		
+		}
+		
+
+	function renderUsers(users) {
+		tBody.empty();
+		for ( var i in users) {
+			const user = users[i];
+			const rowClone = rowTemplate.clone();
+			rowClone.removeClass('wbdv-hidden');
+			rowClone.find('.wbdv-username').html(user.username);
+			rowClone.find('.wbdv-first-name').html(user.firstName);
+			rowClone.find('.wbdv-last-name').html(user.lastName);
+			rowClone.find('wbdv-role').html(user.role);
+			tBody.append(rowClone);
+		}
 	}
 
 })()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
