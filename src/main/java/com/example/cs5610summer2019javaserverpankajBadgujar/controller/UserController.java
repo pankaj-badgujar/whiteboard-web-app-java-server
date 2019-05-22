@@ -35,9 +35,11 @@ public class UserController {
 	}
 
 	@GetMapping("/api/users/{id}")
-	public User findUserById(@PathVariable("id") long id) {
+	public User findUserById(@PathVariable("id") String id) {
+		long idLong = Long.parseLong(id);
+
 		for (User u : users) {
-			if (u.getId() == id) {
+			if (u.getId() == idLong) {
 				return u;
 			}
 		}
@@ -46,8 +48,7 @@ public class UserController {
 
 	@PutMapping("/api/users/{id}")
 	public List<User> updateUser(@PathVariable("id") String id, @RequestBody User newUser) {
-		long idLong = Long.parseLong(id);
-		User userToBeUpdated = findUserById(idLong);
+		User userToBeUpdated = findUserById(id);
 		if (userToBeUpdated != null) {
 			userToBeUpdated.setUsername(newUser.getUsername());
 			userToBeUpdated.setFirstName(newUser.getFirstName());
@@ -67,8 +68,7 @@ public class UserController {
 
 	@DeleteMapping("/api/users/{id}")
 	public List<User> deleteUser(@PathVariable String id) {
-		long idLong = Long.parseLong(id);
-		User userToBeDeleted = findUserById(idLong);
+		User userToBeDeleted = findUserById(id);
 		if (userToBeDeleted != null) {
 			users.remove(userToBeDeleted);
 		}

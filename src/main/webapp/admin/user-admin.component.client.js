@@ -44,9 +44,9 @@
 		// using on() method to accomplish delegated binding for dynamically
 		// created elements
 		$(document).on('click', '.wbdv-remove', deleteUser);
-		$(document).on('click', '.wbdv-edit', selectUser);
+		$(document).on('click', '.wbdv-edit', findUserById);
 	}
-
+	
 	function searchUser(){
 		userToBeSearched = userInfoPickerFromForm();
 		userService.searchUser(userToBeSearched).then(renderUsers);
@@ -61,16 +61,20 @@
 		clearForm();
 	}
 
-	function selectUser(event) {
+	function findUserById(event) {
 		currentTarget = $(event.currentTarget)
 		idToBeEdited = $(currentTarget).attr('id')
 
-		const tr = currentTarget.parent().parent().parent()
+		userService.findUserById(idToBeEdited).then(renderUser)
 
-		usernameFld.val(tr.find('.wbdv-username').text())
-		firstNameFld.val(tr.find('.wbdv-first-name').text())
-		lastNameFld.val(tr.find('.wbdv-last-name').text())
-		roleFld.val(tr.find('.wbdv-role').text())
+	}
+	
+	function renderUser(user){
+		usernameFld.val(user.username)
+		passwordFld.val(user.password)
+		firstNameFld.val(user.firstName)
+		lastNameFld.val(user.lastName)
+		roleFld.val(user.role)
 	}
 
 	function deleteUser(event) {

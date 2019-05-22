@@ -4,6 +4,14 @@ function UserService() {
 	this.deleteUser = deleteUser;
 	this.updateUser = updateUser;
 	this.searchUser = searchUser;
+	this.findUserById = findUserById;
+	
+	function findUserById(id){
+		return fetch('http://localhost:8080/api/users/'+id).then(
+				function(response) {
+					return response.json()
+				})
+	}
 	
 	function searchUser(user){
 		return fetch('http://localhost:8080/api/users/',{
