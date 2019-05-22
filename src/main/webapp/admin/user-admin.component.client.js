@@ -48,13 +48,7 @@
 	}
 
 	function searchUser(){
-		const username = usernameFld.val();
-		const password = passwordFld.val();
-		const firstName = firstNameFld.val();
-		const lastName = lastNameFld.val();
-		const role = roleFld.val();
-		userToBeSearched = new User(username,password,firstName,lastName,role);
-		
+		userToBeSearched = userInfoPickerFromForm();
 		userService.searchUser(userToBeSearched).then(renderUsers);
 		clearForm();
 		
@@ -62,7 +56,7 @@
 	}
 	
 	function updateUser() {
-		userService.updateUser(idToBeEdited, userInfoPickingHelper()).then(
+		userService.updateUser(idToBeEdited, userInfoPickerFromForm()).then(
 				renderUsers);
 		clearForm();
 	}
@@ -86,7 +80,7 @@
 	}
 
 	function createUser() {
-		userService.createUser(userInfoPickingHelper()).then(renderUsers);
+		userService.createUser(userInfoPickerFromForm()).then(renderUsers);
 		clearForm();
 	}
 
@@ -112,22 +106,14 @@
 		firstNameFld.val("");
 		lastNameFld.val("");
 	}
-
-	function userInfoPickingHelper() {
+	
+	function userInfoPickerFromForm(){
 		const username = usernameFld.val();
 		const password = passwordFld.val();
 		const firstName = firstNameFld.val();
 		const lastName = lastNameFld.val();
 		const role = roleFld.val();
-
-		var newlyCreatedUser = {
-			username : username,
-			password : password,
-			firstName : firstName,
-			lastName : lastName,
-			role : role
-		}
-		return newlyCreatedUser;
+		return new User(username,password,firstName,lastName,role);
 	}
 
 })()
