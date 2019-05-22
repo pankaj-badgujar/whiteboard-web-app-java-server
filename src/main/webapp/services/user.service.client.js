@@ -7,14 +7,14 @@ function UserService() {
 	this.findUserById = findUserById;
 	
 	function findUserById(id){
-		return fetch('http://localhost:8080/api/users/'+id).then(
+		return fetch('https://secure-everglades-89767/api/users/'+id).then(
 				function(response) {
 					return response.json()
 				})
 	}
 	
 	function searchUser(user){
-		return fetch('http://localhost:8080/api/users/',{
+		return fetch('https://secure-everglades-89767/api/users/',{
 			method : 'PUT',
 			body : JSON.stringify(user),
 			headers : {
@@ -26,7 +26,7 @@ function UserService() {
 	}
 
 	function updateUser(id, user) {
-		return fetch('http://localhost:8080/api/users/' + id, {
+		return fetch('https://secure-everglades-89767/api/users/' + id, {
 			method : 'PUT',
 			body : JSON.stringify(user),
 			headers : {
@@ -38,7 +38,7 @@ function UserService() {
 	}
 
 	function deleteUser(id) {
-		return fetch('http://localhost:8080/api/users/' + id, {
+		return fetch('https://secure-everglades-89767/api/users/' + id, {
 			method : 'DELETE'
 
 		}).then(function(response) {
@@ -48,7 +48,7 @@ function UserService() {
 
 	function createUser(user) {
 		user.id = (new Date()).getTime();
-		return fetch('http://localhost:8080/api/users', {
+		return fetch('https://secure-everglades-89767/api/users', {
 			method : 'POST',
 			body : JSON.stringify(user),
 			headers : {
@@ -60,7 +60,7 @@ function UserService() {
 	}
 
 	function findAllUsers() {
-		return fetch('http://localhost:8080/api/users').then(
+		return fetch('https://secure-everglades-89767/api/users').then(
 				function(response) {
 					return response.json()
 				})
