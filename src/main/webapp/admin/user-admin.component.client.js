@@ -15,7 +15,7 @@
 	var deleteBtn;
 	var editBtn;
 	var updateBtn;
-	var findUserBtn;
+	var searchBtn;
 
 	jQuery(main);
 
@@ -32,14 +32,14 @@
 		deleteBtn = $('.wbdv-remove');
 		editBtn = $('.wbdv-edit');
 		updateBtn = $('.wbdv-update');
-		findUserBtn = $('.wbdv-search');
+		searchBtn = $('.wbdv-search');
 
 		userService.findAllUsers().then(renderUsers);
 
 		// using click() method to accomplish direct binding for static elements
 		createBtn.click(createUser);
 		updateBtn.click(updateUser);
-		findUserBtn.click(findUserById);
+		searchBtn.click(searchUser);
 
 		// using on() method to accomplish delegated binding for dynamically
 		// created elements
@@ -47,7 +47,17 @@
 		$(document).on('click', '.wbdv-edit', selectUser);
 	}
 
-	function findUserById(){
+	function searchUser(){
+		const username = usernameFld.val();
+		const password = passwordFld.val();
+		const firstName = firstNameFld.val();
+		const lastName = lastNameFld.val();
+		const role = roleFld.val();
+		userToBeSearched = new User(username,password,firstName,lastName,role);
+		
+		userService.searchUser(userToBeSearched).then(renderUsers);
+		clearForm();
+		
 		
 	}
 	
