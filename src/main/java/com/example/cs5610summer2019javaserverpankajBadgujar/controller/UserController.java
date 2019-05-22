@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Role;
@@ -50,6 +52,13 @@ public class UserController {
 			userToBeUpdated.setRole(newUser.getRole());			
 		}
 		
+	}
+	
+	
+	@PostMapping("/api/users")
+	public List<User> createUser(@RequestBody User user) {
+		users.add(user);
+		return users;
 	}
 	
 }

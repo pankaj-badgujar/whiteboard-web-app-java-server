@@ -1,54 +1,52 @@
 (function() {
 	var userService = new UserService();
 
-		var rowTemplate;
-		var tBody;
-		var usernameFld;
-		var passwordFld;
-		var firstNameFld;
-		var lastNameFld;
-		var roleFld;
-		
-		var createBtn;
-		
-		jQuery(main);
-		
-		function main(){
-			rowTemplate = jQuery('.wbdv-template');
-			tBody = $('tbody');
-			usernameFld = $('#usernameFld');
-			passwordFld = $('#passwordFld');
-			firstNameFld = $('#firstNameFld');
-			lastNameFld = $('#lastNameFld');
-			roleFld = $('#roleFld');
-			
-			createBtn = $('.wbdv-create');
-			
-			userService
-			.findAllUsers()
-			.then(renderUsers);
-			
-			createBtn.click(createUser);
-		
-		}
-		
-	function createUser(){
+	var rowTemplate;
+	var tBody;
+	var usernameFld;
+	var passwordFld;
+	var firstNameFld;
+	var lastNameFld;
+	var roleFld;
+
+	var createBtn;
+
+	jQuery(main);
+
+	function main() {
+		rowTemplate = jQuery('.wbdv-template');
+		tBody = $('tbody');
+		usernameFld = $('#usernameFld');
+		passwordFld = $('#passwordFld');
+		firstNameFld = $('#firstNameFld');
+		lastNameFld = $('#lastNameFld');
+		roleFld = $('#roleFld');
+
+		createBtn = $('.wbdv-create');
+
+		userService.findAllUsers().then(renderUsers);
+
+		createBtn.click(createUser);
+
+	}
+
+	function createUser() {
 		const username = usernameFld.val();
 		const password = passwordFld.val();
 		const firstName = firstNameFld.val();
 		const lastName = lastNameFld.val();
 		const role = roleFld.val();
-		
+
 		var newlyCreatedUser = {
-				username: username,
-				password: password,
-				firstName: firstName,
-				lastName: lastName,
-				role: role
+			username : username,
+			password : password,
+			firstName : firstName,
+			lastName : lastName,
+			role : role
 		}
-		
-		userService.createUser(newlyCreatedUser);
-		
+
+		userService.createUser(newlyCreatedUser).then(renderUsers);
+
 	}
 
 	function renderUsers(users) {
