@@ -8,13 +8,14 @@
 	var firstNameFld;
 	var lastNameFld;
 	var roleFld;
-	
+
 	var idToBeEdited;
-	
+
 	var createBtn;
 	var deleteBtn;
 	var editBtn;
 	var updateBtn;
+	var findUserBtn;
 
 	jQuery(main);
 
@@ -31,25 +32,32 @@
 		deleteBtn = $('.wbdv-remove');
 		editBtn = $('.wbdv-edit');
 		updateBtn = $('.wbdv-update');
-		
+		findUserBtn = $('.wbdv-search');
 
 		userService.findAllUsers().then(renderUsers);
-		
-		//using click() method to accomplish direct binding for static elements
+
+		// using click() method to accomplish direct binding for static elements
 		createBtn.click(createUser);
 		updateBtn.click(updateUser);
+		findUserBtn.click(findUserById);
+
+		// using on() method to accomplish delegated binding for dynamically
+		// created elements
+		$(document).on('click', '.wbdv-remove', deleteUser);
+		$(document).on('click', '.wbdv-edit', selectUser);
+	}
+
+	function findUserById(){
 		
-		//using on() method to accomplish delegated binding for dynamically created elements
-		$(document).on('click','.wbdv-remove',deleteUser);
-		$(document).on('click','.wbdv-edit',selectUser);
 	}
 	
-	function updateUser(){
-		userService.updateUser(idToBeEdited,userInfoPickingHelper()).then(renderUsers);
+	function updateUser() {
+		userService.updateUser(idToBeEdited, userInfoPickingHelper()).then(
+				renderUsers);
 		clearForm();
 	}
-	
-	function selectUser(event){
+
+	function selectUser(event) {
 		currentTarget = $(event.currentTarget)
 		idToBeEdited = $(currentTarget).attr('id')
 
@@ -60,8 +68,8 @@
 		lastNameFld.val(tr.find('.wbdv-last-name').text())
 		roleFld.val(tr.find('.wbdv-role').text())
 	}
-	
-	function deleteUser(event){
+
+	function deleteUser(event) {
 		currentTarget = $(event.currentTarget)
 		const idToBeDeleted = $(currentTarget).attr('id')
 		userService.deleteUser(idToBeDeleted).then(renderUsers);
@@ -82,20 +90,20 @@
 			rowClone.find('.wbdv-first-name').html(user.firstName);
 			rowClone.find('.wbdv-last-name').html(user.lastName);
 			rowClone.find('.wbdv-role').html(user.role);
-			rowClone.find('.wbdv-remove').attr("id",user.id);
-			rowClone.find('.wbdv-edit').attr("id",user.id);
+			rowClone.find('.wbdv-remove').attr("id", user.id);
+			rowClone.find('.wbdv-edit').attr("id", user.id);
 			tBody.append(rowClone);
 		}
 	}
-	
-	function clearForm(){
+
+	function clearForm() {
 		usernameFld.val("");
 		passwordFld.val("");
 		firstNameFld.val("");
 		lastNameFld.val("");
 	}
-	
-	function userInfoPickingHelper(){
+
+	function userInfoPickingHelper() {
 		const username = usernameFld.val();
 		const password = passwordFld.val();
 		const firstName = firstNameFld.val();

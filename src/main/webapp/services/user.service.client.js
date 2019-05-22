@@ -5,10 +5,6 @@ function UserService() {
 	this.updateUser = updateUser;
 
 	function updateUser(id, user) {
-		alert('here')
-		console.log(id);
-		console.log(user);
-
 		return fetch('http://localhost:8080/api/users/' + id, {
 			method : 'PUT',
 			body : JSON.stringify(user),
@@ -18,7 +14,6 @@ function UserService() {
 		}).then(function(response) {
 			return response.json()
 		})
-
 	}
 
 	function deleteUser(id) {
