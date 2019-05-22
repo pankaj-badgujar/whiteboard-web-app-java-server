@@ -44,15 +44,18 @@ public class UserController {
 	}
 	
 	@PutMapping("/api/users/{id}")
-	public void updateUser(@PathVariable("id") long id, User newUser) {
-		User userToBeUpdated = findUserById(id);
+	public List<User> updateUser(@PathVariable("id") String id, @RequestBody User newUser) {
+		long idLong = Long.parseLong(id);
+		User userToBeUpdated = findUserById(idLong);
 		if(userToBeUpdated != null) {
 			userToBeUpdated.setUsername(newUser.getUsername());
 			userToBeUpdated.setFirstName(newUser.getFirstName());
 			userToBeUpdated.setLastName(newUser.getLastName());
 			userToBeUpdated.setRole(newUser.getRole());			
+			
+			return users;
 		}
-		
+		return null;
 	}
 	
 	

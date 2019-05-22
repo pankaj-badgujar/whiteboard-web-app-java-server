@@ -2,11 +2,29 @@ function UserService() {
 	this.findAllUsers = findAllUsers;
 	this.createUser = createUser;
 	this.deleteUser = deleteUser;
-	
+	this.updateUser = updateUser;
+
+	function updateUser(id, user) {
+		alert('here')
+		console.log(id);
+		console.log(user);
+
+		return fetch('http://localhost:8080/api/users/' + id, {
+			method : 'PUT',
+			body : JSON.stringify(user),
+			headers : {
+				'content-type' : 'application/json'
+			}
+		}).then(function(response) {
+			return response.json()
+		})
+
+	}
+
 	function deleteUser(id) {
-		return fetch('http://localhost:8080/api/users/'+id,{
+		return fetch('http://localhost:8080/api/users/' + id, {
 			method : 'DELETE'
-				
+
 		}).then(function(response) {
 			return response.json()
 		})
