@@ -23,7 +23,8 @@ public class WidgetController {
 	
 	@PostMapping("/api/widgets")
 	List<Widget> createWidget (@RequestBody Widget widget){
-		return service.createWidget(widget);
+		service.createWidget(widget);
+		return service.findAllWidgets();
 	}
 	
 	@GetMapping("/api/widgets")

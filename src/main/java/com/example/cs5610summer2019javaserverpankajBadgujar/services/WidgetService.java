@@ -20,9 +20,8 @@ public class WidgetService {
 		widgets.add(new Widget("5", "Widget 5", WidgetType.IMAGE, null));
 	}
 
-	public List<Widget> createWidget(Widget widget) {
+	public void createWidget(Widget widget) {
 		widgets.add(widget);
-		return widgets;
 	}
 
 	public List<Widget> findAllWidgets() {
@@ -85,3 +84,5 @@ public class WidgetService {
 		}
 	}
 }
+
+
