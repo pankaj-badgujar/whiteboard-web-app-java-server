@@ -33,24 +33,24 @@ public class WidgetController {
 	}
 	
 	@GetMapping("/api/widgets/{wid}")
-	Widget findWidgetById(@PathVariable("wid") String wid) {
+	Widget findWidgetById(@PathVariable("wid") int wid) {
 		return service.findWidgetById(wid);
 	}
 	
 	@PutMapping("/api/widgets/{wid}")
-	List<Widget> updateWidget(@PathVariable("wid") String wid, @RequestBody Widget widget) {
+	List<Widget> updateWidget(@PathVariable("wid") int wid, @RequestBody Widget widget) {
 		service.updateWidget(wid, widget);
 		return service.findAllWidgets();
 	}
 	
 	@DeleteMapping("/api/widgets/{wid}")
-	List<Widget> deleteWidget(@PathVariable("wid") String wid) {
+	List<Widget> deleteWidget(@PathVariable("wid") int wid) {
 		service.deleteWidget(wid);
 		return service.findAllWidgets();
 	}
 	
 	@PostMapping("/api/widgets/{wid}")
-	List<Widget> swapWidgets(@PathVariable("wid") String wid, @RequestParam("direction") Direction direction){
+	List<Widget> swapWidgets(@PathVariable("wid") int wid, @RequestParam("direction") Direction direction){
 		service.swapWidgets(wid, direction);
 		return service.findAllWidgets();
 	}

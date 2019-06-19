@@ -11,14 +11,14 @@ public class WidgetService {
 
 	private static List<Widget> widgets = new ArrayList<Widget>();
 
-	static {
-		widgets.add(new Widget("1", "Widget 1", WidgetType.HEADING, "Heading Text"));
-		widgets.add(new Widget("2", "Widget 2", WidgetType.PARAGRAPH, "Paragraph Text"));
-		widgets.add(new Widget("3", "Widget 3", WidgetType.LIST,
-				"Enter\none\nlist\nper\nitem"));
-		widgets.add(new Widget("4", "Widget 4", WidgetType.LINK, "Link Text"));
-		widgets.add(new Widget("5", "Widget 5", WidgetType.IMAGE, null));
-	}
+//	static {
+//		widgets.add(new Widget("1", "Widget 1", WidgetType.HEADING, "Heading Text"));
+//		widgets.add(new Widget("2", "Widget 2", WidgetType.PARAGRAPH, "Paragraph Text"));
+//		widgets.add(new Widget("3", "Widget 3", WidgetType.LIST,
+//				"Enter\none\nlist\nper\nitem"));
+//		widgets.add(new Widget("4", "Widget 4", WidgetType.LINK, "Link Text"));
+//		widgets.add(new Widget("5", "Widget 5", WidgetType.IMAGE, null));
+//	}
 
 	public void createWidget(Widget widget) {
 		widgets.add(widget);
@@ -28,18 +28,18 @@ public class WidgetService {
 		return widgets;
 	}
 
-	public Widget findWidgetById(String wid) {
+	public Widget findWidgetById(int wid) {
 		for (Widget w : widgets) {
-			if (w.getId().equals(wid)) {
+			if (w.getId() == (wid)) {
 				return w;
 			}
 		}
 		return null;
 	}
 
-	public void updateWidget(String wid, Widget widget) {
+	public void updateWidget(int wid, Widget widget) {
 		for (Widget w : widgets) {
-			if (w.getId().equals(wid)) {
+			if (w.getId() == (wid)) {
 				w.setSize(widget.getSize());
 				w.setText(widget.getText());
 				w.setName(widget.getName());
@@ -54,20 +54,20 @@ public class WidgetService {
 
 	}
 
-	public void deleteWidget(String wid) {
-		widgets = widgets.stream().filter(widget -> !widget.getId().equals(wid)).collect(Collectors.toList());
+	public void deleteWidget(int wid) {
+		widgets = widgets.stream().filter(widget -> widget.getId() != wid).collect(Collectors.toList());
 	}
 
-	private int findIndexByWidgetId(String widgetId) {
+	private int findIndexByWidgetId(int widgetId) {
 		for (Widget w : widgets) {
-			if (w.getId().equals(widgetId)) {
+			if (w.getId() == (widgetId)) {
 				return widgets.indexOf(w);
 			}
 		}
 		return 0;
 	}
 
-	public void swapWidgets(String widgetId, Direction direction) {
+	public void swapWidgets(int widgetId, Direction direction) {
 		int index = this.findIndexByWidgetId(widgetId);
 		Widget temp = widgets.get(index);
 		switch (direction) {

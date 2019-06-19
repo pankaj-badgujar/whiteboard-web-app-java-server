@@ -3,22 +3,31 @@ package com.example.cs5610summer2019javaserverpankajBadgujar.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
+import javax.persistence.*;
 
-	private String id;
-	private String title;
-	private List<Module> modules;
+@Entity
+@Table(name="courses")
+public class Course {
 	
-	public Course(String id, String title) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String title;
+	
+	public Course() {
+
+	}
+	
+	public Course(int id, String title) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.modules = new ArrayList<Module>();
 	}
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTitle() {

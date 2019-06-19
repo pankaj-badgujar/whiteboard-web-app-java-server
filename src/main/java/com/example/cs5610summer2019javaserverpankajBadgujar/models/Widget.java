@@ -1,8 +1,16 @@
 package com.example.cs5610summer2019javaserverpankajBadgujar.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="widgets")
 public class Widget {
+	
 	private String name;
-	private String id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private WidgetType type;
 	private String text;
 	private String url;
@@ -16,7 +24,7 @@ public class Widget {
 		super();
 	}
 	
-	public Widget(String id, String name, WidgetType type, String text) {
+	public Widget(int id, String name, WidgetType type, String text) {
 		
 		this.id = id;
 		this.name = name;
@@ -33,10 +41,10 @@ public class Widget {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public WidgetType getType() {
