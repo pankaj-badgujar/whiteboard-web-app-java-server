@@ -65,6 +65,7 @@ public class CourseController {
 		
 		Course courseToBeUpdated = courseRepository.findCourseById(cid);
 		courseToBeUpdated.setTitle(course.getTitle());
+		courseRepository.save(courseToBeUpdated);
 		return courseRepository.findAllCourses();
 		
 //		service.updateCourse(cid, course);
