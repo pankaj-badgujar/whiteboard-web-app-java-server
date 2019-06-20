@@ -15,9 +15,10 @@ public class Widget {
 	private String url;
 	private int size;
 	private String listType;
+	private int position;
 
 	public Widget() {
-		super();
+		
 	}
 
 	public Widget(int id, String name, WidgetType type, String text) {
@@ -87,6 +88,14 @@ public class Widget {
 		this.listType = listType;
 	}
 
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
 	public void set(Widget newWidget) {
 		this.setListType(newWidget.getListType());
 		this.setType(newWidget.getType());
@@ -94,6 +103,7 @@ public class Widget {
 		this.setSize(newWidget.getSize());
 		this.setText(newWidget.getText());
 		this.setUrl(newWidget.getUrl());
+		this.setPosition(newWidget.getPosition());
 		
 	}
 }
