@@ -70,21 +70,29 @@ public class WidgetController {
 
 		Widget widgetToBeMoved = widgetRepository.findWidgetById(wid);
 		int positionToBeChanged = widgetToBeMoved.getPosition();
+		int positionToStartLooking = positionToBeChanged;
+		Widget widgetToBeChangedWith;
 		switch (direction) {
 		case UP:
-			Widget widgetAbove = widgetRepository.findWidgetByPosition(positionToBeChanged-1);
-			widgetAbove.setPosition(positionToBeChanged);
-			widgetToBeMoved.setPosition(positionToBeChanged-1);
-			widgetRepository.save(widgetAbove);
+			do {
+				positionToStartLooking--;
+				widgetToBeChangedWith = widgetRepository.findWidgetByPosition(positionToStartLooking);
+			} while (widgetToBeChangedWith == null);
+			widgetToBeChangedWith.setPosition(positionToBeChanged);
+			widgetToBeMoved.setPosition(positionToStartLooking);
+			widgetRepository.save(widgetToBeChangedWith);
 			break;
-			
+
 		case DOWN:
-			Widget widgetBelow = widgetRepository.findWidgetByPosition(positionToBeChanged+1);
-			widgetBelow.setPosition(positionToBeChanged);
-			widgetToBeMoved.setPosition(positionToBeChanged+1);
-			widgetRepository.save(widgetBelow);
+			do {
+				positionToStartLooking++;
+				widgetToBeChangedWith = widgetRepository.findWidgetByPosition(positionToStartLooking);
+			} while (widgetToBeChangedWith == null);
+			widgetToBeChangedWith.setPosition(positionToBeChanged);
+			widgetToBeMoved.setPosition(positionToStartLooking);
+			widgetRepository.save(widgetToBeChangedWith);
 			break;
-			
+
 		default:
 			break;
 		}
@@ -93,5 +101,5 @@ public class WidgetController {
 //		service.swapWidgets(wid, direction);
 //		return service.findAllWidgets();
 	}
-	
+
 }
