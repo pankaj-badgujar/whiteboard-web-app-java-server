@@ -2,16 +2,32 @@ package com.example.cs5610summer2019javaserverpankajBadgujar.models;
 
 import java.util.List;
 
-public class Module {
-	private String id;
-	private String title;
-	private List<Lesson> lessons;
+import javax.persistence.*;
 
-	public String getId() {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name="modules")
+public class Module {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String title;
+	
+	@ManyToOne
+	@JsonIgnore
+	private Course course;
+	
+	@Transient
+	public String getCourseTitle() {
+		return course.getTitle();
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -23,11 +39,12 @@ public class Module {
 		this.title = title;
 	}
 
-	public List<Lesson> getLessons() {
-		return lessons;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setLessons(List<Lesson> lessons) {
-		this.lessons = lessons;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
+
 }
