@@ -6,18 +6,16 @@ import javax.persistence.*;
 @Table(name="widgets")
 public class Widget {
 	
-	private String name;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String name;
 	private WidgetType type;
 	private String text;
 	private String url;
 	private int size;
-	private int width;
-	private int height;
-	private String cssClass;
 	private String listType;
 	
 	public Widget() {
@@ -71,25 +69,7 @@ public class Widget {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public String getCssClass() {
-		return cssClass;
-	}
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
-	}
-
+	
 	public String getListType() {
 		return listType;
 	}

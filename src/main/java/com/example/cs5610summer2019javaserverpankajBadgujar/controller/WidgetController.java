@@ -2,6 +2,7 @@ package com.example.cs5610summer2019javaserverpankajBadgujar.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Widget;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.WidgetRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.services.Direction;
 import com.example.cs5610summer2019javaserverpankajBadgujar.services.WidgetService;
 
@@ -20,6 +22,9 @@ import com.example.cs5610summer2019javaserverpankajBadgujar.services.WidgetServi
 @CrossOrigin("*")
 public class WidgetController {
 	WidgetService service = new WidgetService();
+	
+	@Autowired
+	WidgetRepository widgetRepository;
 	
 	@PostMapping("/api/widgets")
 	List<Widget> createWidget (@RequestBody Widget widget){
@@ -29,12 +34,14 @@ public class WidgetController {
 	
 	@GetMapping("/api/widgets")
 	List<Widget> findAllWidgets(){
-		return service.findAllWidgets();
+		return widgetRepository.findAllWidgets();
+//		return service.findAllWidgets();
 	}
 	
 	@GetMapping("/api/widgets/{wid}")
 	Widget findWidgetById(@PathVariable("wid") int wid) {
-		return service.findWidgetById(wid);
+		return widgetRepository.findWidgetById(wid);
+//		return service.findWidgetById(wid);
 	}
 	
 	@PutMapping("/api/widgets/{wid}")

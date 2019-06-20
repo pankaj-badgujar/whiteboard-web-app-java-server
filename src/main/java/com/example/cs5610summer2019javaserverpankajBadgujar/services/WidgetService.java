@@ -43,9 +43,6 @@ public class WidgetService {
 				w.setSize(widget.getSize());
 				w.setText(widget.getText());
 				w.setName(widget.getName());
-				w.setWidth(widget.getWidth());
-				w.setHeight(widget.getHeight());
-				w.setCssClass(widget.getCssClass());
 				w.setUrl(widget.getUrl());
 				w.setType(widget.getType());
 				w.setListType(widget.getListType());

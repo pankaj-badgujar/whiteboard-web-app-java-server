@@ -20,33 +20,35 @@ import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleR
 public class ModuleController {
 	
 	@Autowired
-	ModuleRepository repository;
+	ModuleRepository moduleRepository;
 	
 	@Autowired
 	CourseRepository courseRepository;
 	
 	@GetMapping("/api/modules")
 	public List<Module> findAllModules(){
-		return repository.findAllModules();
+		return moduleRepository.findAllModules();
 	}
 	
 	@GetMapping("/api/courses/{cid}/modules")
 	public List<Module> findAllModulesForCourse(@PathVariable("cid") Integer courseId){
-		return repository.findAllModulesForCourse(courseId);
+		return moduleRepository.findAllModulesForCourse(courseId);
 	}
 	
 	@GetMapping("/api/modules/{mid}")
 	public Module findModuleById(@PathVariable("mid") Integer moduleId) {
-		return repository.findModuleById(moduleId);
+		return moduleRepository.findModuleById(moduleId);
 	}
 	
 	@PostMapping("/api/courses/{cid}/modules")
 	public List<Module> addModuleToCourse(@PathVariable("cid") Integer courseId, @RequestBody Module newModule){
 		Course courseToBeAddedTo = courseRepository.findCourseById(courseId);
 		newModule.setCourse(courseToBeAddedTo);
-		repository.save(newModule);
-		return repository.findAllModulesForCourse(courseId);
+		moduleRepository.save(newModule);
+		return moduleRepository.findAllModulesForCourse(courseId);
 		
 	}
+	
+	
 
 }
