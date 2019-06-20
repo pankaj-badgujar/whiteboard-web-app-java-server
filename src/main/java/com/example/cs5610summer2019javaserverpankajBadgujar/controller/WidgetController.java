@@ -28,8 +28,10 @@ public class WidgetController {
 	
 	@PostMapping("/api/widgets")
 	List<Widget> createWidget (@RequestBody Widget widget){
-		service.createWidget(widget);
-		return service.findAllWidgets();
+		widgetRepository.save(widget);
+		return widgetRepository.findAllWidgets();
+//		service.createWidget(widget);
+//		return service.findAllWidgets();
 	}
 	
 	@GetMapping("/api/widgets")
@@ -46,14 +48,21 @@ public class WidgetController {
 	
 	@PutMapping("/api/widgets/{wid}")
 	List<Widget> updateWidget(@PathVariable("wid") int wid, @RequestBody Widget widget) {
-		service.updateWidget(wid, widget);
-		return service.findAllWidgets();
+		Widget widgetToBeUpdated = widgetRepository.findWidgetById(wid);
+		widgetToBeUpdated.set(widget);
+		widgetRepository.save(widgetToBeUpdated);
+		return widgetRepository.findAllWidgets();
+		
+//		service.updateWidget(wid, widget);
+//		return service.findAllWidgets();
 	}
 	
 	@DeleteMapping("/api/widgets/{wid}")
 	List<Widget> deleteWidget(@PathVariable("wid") int wid) {
-		service.deleteWidget(wid);
-		return service.findAllWidgets();
+		widgetRepository.deleteById(wid);
+		return widgetRepository.findAllWidgets();
+//		service.deleteWidget(wid);
+//		return service.findAllWidgets();
 	}
 	
 	@PostMapping("/api/widgets/{wid}")
@@ -62,5 +71,4 @@ public class WidgetController {
 		return service.findAllWidgets();
 	}
 	
-
 }
