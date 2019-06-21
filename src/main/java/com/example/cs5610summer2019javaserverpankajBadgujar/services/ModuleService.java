@@ -46,9 +46,11 @@ public class ModuleService {
 	}
 	
 	
-	public void updateModule(Integer moduleId, Module module) {
+	public List<Module> updateModule(Integer moduleId, Module module) {
+		int courseId = moduleRepository.findCourseIdFromModuleId(moduleId);
 		Module moduleToBeUpdated = moduleRepository.findModuleById(moduleId);
 		moduleToBeUpdated.setTitle(module.getTitle());
 		moduleRepository.save(moduleToBeUpdated);
+		return moduleRepository.findAllModulesForCourse(courseId);
 	}
 }
