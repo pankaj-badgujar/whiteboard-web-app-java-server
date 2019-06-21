@@ -1,23 +1,28 @@
 package com.example.cs5610summer2019javaserverpankajBadgujar.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "widgets")
 public class Widget {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String name;
-	private String id;
 	private WidgetType type;
 	private String text;
 	private String url;
 	private int size;
-	private int width;
-	private int height;
-	private String cssClass;
 	private String listType;
-	
+	private int position;
+
 	public Widget() {
-		super();
-	}
-	
-	public Widget(String id, String name, WidgetType type, String text) {
 		
+	}
+
+	public Widget(int id, String name, WidgetType type, String text) {
+
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -26,60 +31,53 @@ public class Widget {
 		this.setSize(1);
 		this.setUrl("#");
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
+
 	public WidgetType getType() {
 		return type;
 	}
+
 	public void setType(WidgetType type) {
 		this.type = type;
 	}
+
 	public String getText() {
 		return text;
 	}
+
 	public void setText(String text) {
 		this.text = text;
 	}
+
 	public String getUrl() {
 		return url;
 	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
 	public int getSize() {
 		return size;
 	}
+
 	public void setSize(int size) {
 		this.size = size;
-	}
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public String getCssClass() {
-		return cssClass;
-	}
-	public void setCssClass(String cssClass) {
-		this.cssClass = cssClass;
 	}
 
 	public String getListType() {
@@ -89,6 +87,23 @@ public class Widget {
 	public void setListType(String listType) {
 		this.listType = listType;
 	}
-	
 
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public void set(Widget newWidget) {
+		this.setListType(newWidget.getListType());
+		this.setType(newWidget.getType());
+		this.setName(newWidget.getName());
+		this.setSize(newWidget.getSize());
+		this.setText(newWidget.getText());
+		this.setUrl(newWidget.getUrl());
+		this.setPosition(newWidget.getPosition());
+		
+	}
 }
