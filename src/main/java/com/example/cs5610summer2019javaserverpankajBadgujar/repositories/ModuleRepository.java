@@ -18,4 +18,7 @@ public interface ModuleRepository extends CrudRepository<Module, Integer> {
 	
 	@Query("select module from Module module where module.course.id = :cid")
 	List<Module> findAllModulesForCourse(@Param("cid") Integer courseId);
+	
+	@Query("select course.id from Module module where module.id = :mid")
+	Integer findCourseIdFromModuleId(@Param("mid") Integer moduleId);
 }

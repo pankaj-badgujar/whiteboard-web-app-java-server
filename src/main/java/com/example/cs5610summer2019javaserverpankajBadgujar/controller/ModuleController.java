@@ -11,56 +11,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.cs5610summer2019javaserverpankajBadgujar.models.Course;
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Module;
-import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.CourseRepository;
-import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
+import com.example.cs5610summer2019javaserverpankajBadgujar.services.ModuleService;
 
 @RestController
 @CrossOrigin("*")
 public class ModuleController {
 	
-	@Autowired
-	ModuleRepository moduleRepository;
 	
 	@Autowired
-	CourseRepository courseRepository;
+    ModuleService moduleService; 
 	
 	@GetMapping("/api/modules")
 	public List<Module> findAllModules(){
-		return moduleRepository.findAllModules();
+		return moduleService.findAllModules();
 	}
 	
 	@GetMapping("/api/courses/{cid}/modules")
 	public List<Module> findAllModulesForCourse(@PathVariable("cid") Integer courseId){
-		return moduleRepository.findAllModulesForCourse(courseId);
+		return moduleService.findAllModulesForCourse(courseId);
 	}
 	
 	@GetMapping("/api/modules/{mid}")
 	public Module findModuleById(@PathVariable("mid") Integer moduleId) {
-		return moduleRepository.findModuleById(moduleId);
+		return moduleService.findModuleById(moduleId);
 	}
 	
 	@PostMapping("/api/courses/{cid}/modules")
 	public List<Module> addModuleToCourse(@PathVariable("cid") Integer courseId, @RequestBody Module newModule){
-		Course courseToBeAddedTo = courseRepository.findCourseById(courseId);
-		newModule.setCourse(courseToBeAddedTo);
-		moduleRepository.save(newModule);
-		return moduleRepository.findAllModulesForCourse(courseId);
-		
+		moduleService.addModuleToCourse(courseId, newModule);
+		return moduleService.findAllModulesForCourse(courseId);
 	}
 	
 	@DeleteMapping("/api/modules/{mid}")
-	public void deleteModule(@PathVariable("mid") Integer moduleId){
-		moduleRepository.deleteById(moduleId);
+	public List<Module> deleteModule(@PathVariable("mid") Integer moduleId){
+		return moduleService.deleteModule(moduleId);
 	}
 	
 	@PutMapping("/api/modules/{mid}")
 	public void updateModule(@PathVariable("mid") Integer moduleId, @RequestBody Module module) {
-		Module moduleToBeUpdated = moduleRepository.findModuleById(moduleId);
-		moduleToBeUpdated.setTitle(module.getTitle());
-		moduleRepository.save(moduleToBeUpdated);
+		moduleService.updateModule(moduleId, module);
 	}
 
 }

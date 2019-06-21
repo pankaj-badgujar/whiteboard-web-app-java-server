@@ -13,48 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Course;
-import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.CourseRepository;
-import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.services.CourseService;
+import com.example.cs5610summer2019javaserverpankajBadgujar.services.CourseServiceUsingJavaObjects;
 
 @RestController
 @CrossOrigin("*")
 public class CourseController {
 
-	CourseService service = new CourseService();
-
+//	CourseServiceUsingJavaObjects service = new CourseServiceUsingJavaObjects();
+	
 	@Autowired
-	CourseRepository courseRepository;
-
-	@Autowired
-	ModuleRepository moduleRepository;
+	CourseService courseService;
 	
 	@GetMapping("/api/courses")
 	List<Course> findAllCourses() {
-		return courseRepository.findAllCourses();
+		return courseService.findAllCourses();
 //		return (List<Course>)repository.findAll();
 //		return service.findAllCourses();
 	}
 
 	@PostMapping("/api/courses")
 	List<Course> createCourse(@RequestBody Course course) {
-		courseRepository.save(course);
-		return courseRepository.findAllCourses();
+		courseService.createCourse(course);
+		return courseService.findAllCourses();
 //		service.createCourse(course);
 //		return service.findAllCourses();
 	}
 
 	@GetMapping("/api/courses/{cid}")
 	Course findCourseById(@PathVariable("cid") int courseId) {
-		return courseRepository.findCourseById(courseId);
+		return courseService.findCourseById(courseId);
 		// return service.findCourseById(courseId);
 	}
 
 	@DeleteMapping("/api/courses/{cid}")
 	List<Course> deleteCourse(@PathVariable("cid") int cid) {
-		moduleRepository.deleteAll(moduleRepository.findAllModulesForCourse(cid));
-		courseRepository.deleteById(cid);
-		return courseRepository.findAllCourses();
+		courseService.deleteCourse(cid);
+		return courseService.findAllCourses();
 		
 //		service.deleteCourse(cid);
 //		return service.findAllCourses();
@@ -62,11 +57,8 @@ public class CourseController {
 
 	@PutMapping("/api/courses/{cid}")
 	List<Course> updateCourse(@PathVariable("cid") int cid, @RequestBody Course course) {
-		
-		Course courseToBeUpdated = courseRepository.findCourseById(cid);
-		courseToBeUpdated.setTitle(course.getTitle());
-		courseRepository.save(courseToBeUpdated);
-		return courseRepository.findAllCourses();
+		courseService.updateCourse(cid, course);
+		return courseService.findAllCourses();
 		
 //		service.updateCourse(cid, course);
 //		return service.findAllCourses();

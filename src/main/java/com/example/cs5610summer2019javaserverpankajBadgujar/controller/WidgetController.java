@@ -14,44 +14,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Widget;
-import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.WidgetRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.services.Direction;
 import com.example.cs5610summer2019javaserverpankajBadgujar.services.WidgetService;
+import com.example.cs5610summer2019javaserverpankajBadgujar.services.WidgetServiceUsingJavaObjects;
 
 @RestController
 @CrossOrigin("*")
 public class WidgetController {
-	WidgetService service = new WidgetService();
+//	WidgetServiceUsingJavaObjects service = new WidgetServiceUsingJavaObjects();
 
 	@Autowired
-	WidgetRepository widgetRepository;
-
+	WidgetService widgetService;
+	
 	@PostMapping("/api/widgets")
 	List<Widget> createWidget(@RequestBody Widget widget) {
-		widgetRepository.save(widget);
-		return widgetRepository.findAllWidgets();
+		widgetService.createWidget(widget);
+		return widgetService.findAllWidgets();
 //		service.createWidget(widget);
 //		return service.findAllWidgets();
 	}
 
 	@GetMapping("/api/widgets")
 	List<Widget> findAllWidgets() {
-		return widgetRepository.findAllWidgets();
+		return widgetService.findAllWidgets();
 //		return service.findAllWidgets();
 	}
 
 	@GetMapping("/api/widgets/{wid}")
 	Widget findWidgetById(@PathVariable("wid") int wid) {
-		return widgetRepository.findWidgetById(wid);
+		return widgetService.findWidgetById(wid);
 //		return service.findWidgetById(wid);
 	}
 
 	@PutMapping("/api/widgets/{wid}")
 	List<Widget> updateWidget(@PathVariable("wid") int wid, @RequestBody Widget widget) {
-		Widget widgetToBeUpdated = widgetRepository.findWidgetById(wid);
-		widgetToBeUpdated.set(widget);
-		widgetRepository.save(widgetToBeUpdated);
-		return widgetRepository.findAllWidgets();
+		widgetService.updateWidget(wid, widget);
+		return widgetService.findAllWidgets();
 
 //		service.updateWidget(wid, widget);
 //		return service.findAllWidgets();
@@ -59,8 +57,8 @@ public class WidgetController {
 
 	@DeleteMapping("/api/widgets/{wid}")
 	List<Widget> deleteWidget(@PathVariable("wid") int wid) {
-		widgetRepository.deleteById(wid);
-		return widgetRepository.findAllWidgets();
+		widgetService.deleteWidget(wid);
+		return widgetService.findAllWidgets();
 //		service.deleteWidget(wid);
 //		return service.findAllWidgets();
 	}
@@ -68,36 +66,8 @@ public class WidgetController {
 	@PostMapping("/api/widgets/{wid}")
 	List<Widget> swapWidgets(@PathVariable("wid") int wid, @RequestParam("direction") Direction direction) {
 
-		Widget widgetToBeMoved = widgetRepository.findWidgetById(wid);
-		int positionToBeChanged = widgetToBeMoved.getPosition();
-		int positionToStartLooking = positionToBeChanged;
-		Widget widgetToBeChangedWith;
-		switch (direction) {
-		case UP:
-			do {
-				positionToStartLooking--;
-				widgetToBeChangedWith = widgetRepository.findWidgetByPosition(positionToStartLooking);
-			} while (widgetToBeChangedWith == null);
-			widgetToBeChangedWith.setPosition(positionToBeChanged);
-			widgetToBeMoved.setPosition(positionToStartLooking);
-			widgetRepository.save(widgetToBeChangedWith);
-			break;
-
-		case DOWN:
-			do {
-				positionToStartLooking++;
-				widgetToBeChangedWith = widgetRepository.findWidgetByPosition(positionToStartLooking);
-			} while (widgetToBeChangedWith == null);
-			widgetToBeChangedWith.setPosition(positionToBeChanged);
-			widgetToBeMoved.setPosition(positionToStartLooking);
-			widgetRepository.save(widgetToBeChangedWith);
-			break;
-
-		default:
-			break;
-		}
-		widgetRepository.save(widgetToBeMoved);
-		return widgetRepository.findAllWidgets();
+		widgetService.swapWidgets(wid, direction);
+		return widgetService.findAllWidgets();
 //		service.swapWidgets(wid, direction);
 //		return service.findAllWidgets();
 	}
