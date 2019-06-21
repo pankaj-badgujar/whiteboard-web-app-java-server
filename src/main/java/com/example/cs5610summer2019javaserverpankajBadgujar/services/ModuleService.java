@@ -32,7 +32,7 @@ public class ModuleService {
 	}
 	
 
-	public void addModuleToCourse(Integer courseId,  Module newModule){
+	public void createModuleForCourse(Integer courseId,  Module newModule){
 		Course courseToBeAddedTo = courseRepository.findCourseById(courseId);
 		newModule.setCourse(courseToBeAddedTo);
 		moduleRepository.save(newModule);		

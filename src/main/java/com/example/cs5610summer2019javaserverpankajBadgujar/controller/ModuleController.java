@@ -38,8 +38,8 @@ public class ModuleController {
 	}
 	
 	@PostMapping("/api/courses/{cid}/modules")
-	public List<Module> addModuleToCourse(@PathVariable("cid") Integer courseId, @RequestBody Module newModule){
-		moduleService.addModuleToCourse(courseId, newModule);
+	public List<Module> createModuleForCourse(@PathVariable("cid") Integer courseId, @RequestBody Module newModule){
+		moduleService.createModuleForCourse(courseId, newModule);
 		return moduleService.findAllModulesForCourse(courseId);
 	}
 	
