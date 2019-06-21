@@ -51,7 +51,6 @@ public class ModuleController {
 	@PutMapping("/api/modules/{mid}")
 	public List<Module> updateModule(@PathVariable("mid") Integer moduleId, @RequestBody Module module) {
 		return moduleService.updateModule(moduleId, module);
-
 	}
 
 }
