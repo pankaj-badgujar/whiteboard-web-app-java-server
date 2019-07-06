@@ -11,6 +11,7 @@ import com.example.cs5610summer2019javaserverpankajBadgujar.models.Module;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.CourseRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.LessonRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.TopicRepository;
 
 @Service
 public class ModuleService {
@@ -23,6 +24,9 @@ public class ModuleService {
 	
 	@Autowired
 	CourseRepository courseRepository;
+	
+	@Autowired
+	TopicRepository topicRepository;
 		
 	public List<Module> findAllModules(){
 		return moduleRepository.findAllModules();
@@ -47,8 +51,10 @@ public class ModuleService {
 	public void deleteModule(Integer moduleId){
 //		int courseId = moduleRepository.findCourseIdFromModuleId(moduleId);
 		
-		List<Lesson> lessonsContained = lessonRepository.findAllLessonsByModule(moduleId);
-		lessonRepository.deleteAll(lessonsContained);
+		lessonRepository.findAllLessonsByModule(moduleId).forEach(lesson -> {
+			topicRepository.deleteAll(topicRepository.findAllTopicsForLesson(lesson.getId()));	
+			lessonRepository.delete(lesson);
+		});
 		moduleRepository.deleteById(moduleId);
 //		return moduleRepository.findAllModulesForCourse(courseId);
 	}

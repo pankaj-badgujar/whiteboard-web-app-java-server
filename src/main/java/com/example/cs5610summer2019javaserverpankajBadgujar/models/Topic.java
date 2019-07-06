@@ -47,5 +47,13 @@ public class Topic {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public Lesson getLesson() {
+		return lesson;
+	}
+
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
 	
 }
