@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Course;
+import com.example.cs5610summer2019javaserverpankajBadgujar.models.Lesson;
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Module;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.CourseRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.LessonRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.TopicRepository;
 
 @Service
 public class CourseService {
@@ -22,6 +24,9 @@ public class CourseService {
 
 	@Autowired
 	ModuleRepository moduleRepository;
+
+	@Autowired
+	TopicRepository topicRepository;
 
 	ModuleService moduleService;
 
@@ -39,10 +44,13 @@ public class CourseService {
 
 	public void deleteCourse(int courseId) {
 
-		List<Module> modulesContained = moduleRepository.findAllModulesForCourse(courseId);
-		modulesContained
-				.forEach(module -> lessonRepository.deleteAll(lessonRepository.findAllLessonsByModule(module.getId())));
-		moduleRepository.deleteAll(modulesContained);
+		moduleRepository.findAllModulesForCourse(courseId).forEach(module -> {
+			lessonRepository.findAllLessonsByModule(module.getId()).forEach(lesson -> {
+				topicRepository.deleteAll(topicRepository.findAllTopicsForLesson(lesson.getId()));
+				lessonRepository.delete(lesson);
+			});
+			moduleRepository.delete(module);
+		});
 		courseRepository.deleteById(courseId);
 	}
 

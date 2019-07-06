@@ -14,6 +14,9 @@ public class Lesson {
 	private int id;
 	private String title;
 	
+	@OneToMany(mappedBy = "lesson")
+	private List<Topic> topics;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
@@ -53,6 +56,14 @@ public class Lesson {
 
 	public void setModule(Module module) {
 		this.module = module;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<Topic> topics) {
+		this.topics = topics;
 	}
 
 }

@@ -9,6 +9,7 @@ import com.example.cs5610summer2019javaserverpankajBadgujar.models.Lesson;
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Module;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.LessonRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.TopicRepository;
 
 @Service
 public class LessonService {
@@ -18,6 +19,9 @@ public class LessonService {
 	
 	@Autowired
 	ModuleRepository moduleRepository;
+	
+	@Autowired
+	TopicRepository topicRepository;
 	
 	public List<Lesson> findAllLessons(){
 		return lessonRepository.findAllLessons();
@@ -38,6 +42,7 @@ public class LessonService {
 	}
 	
 	public void deleteLesson(Integer lessonId) {
+		topicRepository.deleteAll(topicRepository.findAllTopicsForLesson(lessonId));
 		lessonRepository.deleteById(lessonId);
 	}
 	
