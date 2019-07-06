@@ -29,7 +29,6 @@ public class Lesson {
 	}
 	
 	@Transient
-	@JsonIgnore
 	public String getModuleTitle() {
 		return module.getTitle();
 	}
