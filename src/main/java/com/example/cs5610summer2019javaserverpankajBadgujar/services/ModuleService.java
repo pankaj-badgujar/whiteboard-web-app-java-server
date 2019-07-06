@@ -6,19 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Course;
+import com.example.cs5610summer2019javaserverpankajBadgujar.models.Lesson;
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Module;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.CourseRepository;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.LessonRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.ModuleRepository;
 
 @Service
 public class ModuleService {
 
 	@Autowired
+	LessonRepository lessonRepository;
+	
+	@Autowired
 	ModuleRepository moduleRepository;
 	
 	@Autowired
 	CourseRepository courseRepository;
-	
+		
 	public List<Module> findAllModules(){
 		return moduleRepository.findAllModules();
 	}
@@ -39,10 +44,13 @@ public class ModuleService {
 	}
 	
 
-	public List<Module> deleteModule(Integer moduleId){
-		int courseId = moduleRepository.findCourseIdFromModuleId(moduleId);
+	public void deleteModule(Integer moduleId){
+//		int courseId = moduleRepository.findCourseIdFromModuleId(moduleId);
+		
+		List<Lesson> lessonsContained = lessonRepository.findAllLessonsByModule(moduleId);
+		lessonRepository.deleteAll(lessonsContained);
 		moduleRepository.deleteById(moduleId);
-		return moduleRepository.findAllModulesForCourse(courseId);
+//		return moduleRepository.findAllModulesForCourse(courseId);
 	}
 	
 	
