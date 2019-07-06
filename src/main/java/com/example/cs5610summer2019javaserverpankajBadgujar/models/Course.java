@@ -1,6 +1,5 @@
 package com.example.cs5610summer2019javaserverpankajBadgujar.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;

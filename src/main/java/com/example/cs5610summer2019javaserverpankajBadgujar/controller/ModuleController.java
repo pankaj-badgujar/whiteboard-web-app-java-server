@@ -44,8 +44,8 @@ public class ModuleController {
 	}
 	
 	@DeleteMapping("/api/modules/{mid}")
-	public List<Module> deleteModule(@PathVariable("mid") Integer moduleId){
-		return moduleService.deleteModule(moduleId);
+	public void deleteModule(@PathVariable("mid") Integer moduleId){
+		/* return */ moduleService.deleteModule(moduleId);
 	}
 	
 	@PutMapping("/api/modules/{mid}")
