@@ -18,4 +18,7 @@ public interface WidgetRepository extends CrudRepository<Widget, Integer> {
 	
 	@Query("select widget from Widget widget where widget.position =:pos")
 	Widget findWidgetByPosition(@Param("pos") Integer position);
+	
+	@Query("select widget from Widget widget where widget.topic.id =:tid")
+	List<Widget> findAllWidgetsForTopic(@Param("tid") Integer topicId);
 }

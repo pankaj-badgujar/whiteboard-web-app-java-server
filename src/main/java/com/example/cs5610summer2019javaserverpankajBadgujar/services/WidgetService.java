@@ -28,6 +28,9 @@ public class WidgetService {
 		return widgetRepository.findWidgetById(wid);
 	}
 
+	public List<Widget> findAllWidgetsForTopic(int topicId){
+		return widgetRepository.findAllWidgetsForTopic(topicId);
+	}
 	
 	public void updateWidget(int wid, Widget widget) {
 		Widget widgetToBeUpdated = widgetRepository.findWidgetById(wid);

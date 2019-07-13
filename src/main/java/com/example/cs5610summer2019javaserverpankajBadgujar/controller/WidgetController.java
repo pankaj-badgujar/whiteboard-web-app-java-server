@@ -46,6 +46,11 @@ public class WidgetController {
 //		return service.findWidgetById(wid);
 	}
 
+	@GetMapping("/api/topics/{topicId}/widgets")
+	List<Widget> findAllWidgetsForTopic(@PathVariable("topicId") int topicId){
+		return widgetService.findAllWidgetsForTopic(topicId);
+	}
+	
 	@PutMapping("/api/widgets/{wid}")
 	List<Widget> updateWidget(@PathVariable("wid") int wid, @RequestBody Widget widget) {
 		widgetService.updateWidget(wid, widget);

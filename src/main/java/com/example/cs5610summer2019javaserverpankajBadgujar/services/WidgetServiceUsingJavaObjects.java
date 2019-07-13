@@ -42,10 +42,9 @@ public class WidgetServiceUsingJavaObjects {
 			if (w.getId() == (wid)) {
 				w.setSize(widget.getSize());
 				w.setText(widget.getText());
-				w.setName(widget.getName());
 				w.setUrl(widget.getUrl());
 				w.setType(widget.getType());
-				w.setListType(widget.getListType());
+				w.setOrdered(widget.isOrdered());
 			}
 		}
 

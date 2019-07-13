@@ -20,6 +20,9 @@ public class Topic {
 	@JsonIgnore
 	private Lesson lesson;
 	
+	@OneToMany(mappedBy = "topic")
+	private List<Widget> widgets;
+	
 	public Topic() {
 		
 	}
