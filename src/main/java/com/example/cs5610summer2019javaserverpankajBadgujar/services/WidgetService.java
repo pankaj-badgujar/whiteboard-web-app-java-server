@@ -32,10 +32,11 @@ public class WidgetService {
 		return widgetRepository.findAllWidgetsForTopic(topicId);
 	}
 	
-	public void updateWidget(int wid, Widget widget) {
+	public Widget updateWidget(int wid, Widget widget) {
 		Widget widgetToBeUpdated = widgetRepository.findWidgetById(wid);
 		widgetToBeUpdated.set(widget);
 		widgetRepository.save(widgetToBeUpdated);
+		return widgetToBeUpdated;
 	}
 
 	public void deleteWidget( int wid) {

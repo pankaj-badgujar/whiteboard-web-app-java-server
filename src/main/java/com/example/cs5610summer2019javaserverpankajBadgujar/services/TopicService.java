@@ -39,9 +39,10 @@ public class TopicService {
 		topicRepository.deleteById(topicId);
 	}
 	
-	public void updateTopic(int topicId, Topic newTopic) {
+	public Topic updateTopic(int topicId, Topic newTopic) {
 		 Topic topicToBeUpdated = topicRepository.findTopicById(topicId);
 		 topicToBeUpdated.setTitle(newTopic.getTitle());
 		 topicRepository.save(topicToBeUpdated);
+		 return topicToBeUpdated;
 	}
 }

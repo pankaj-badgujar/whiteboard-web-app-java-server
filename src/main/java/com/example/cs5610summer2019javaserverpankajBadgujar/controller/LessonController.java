@@ -49,7 +49,7 @@ public class LessonController {
 	}
 	
 	@PutMapping("/api/lessons/{lid}")
-	public void updateLesson(@PathVariable("lid") Integer lessonId, @RequestBody Lesson lesson) {
-		lessonService.updateLesson(lessonId, lesson);
+	public Lesson updateLesson(@PathVariable("lid") Integer lessonId, @RequestBody Lesson lesson) {
+		return lessonService.updateLesson(lessonId, lesson);
 	}
 }

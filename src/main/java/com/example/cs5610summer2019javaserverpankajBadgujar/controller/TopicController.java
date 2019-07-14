@@ -48,8 +48,8 @@ public class TopicController {
 	}
 	
 	@PutMapping("/api/topics/{tid}")
-	public void updateTopic(@PathVariable("tid") int topicId, @RequestBody Topic newTopic) {
-		topicService.updateTopic(topicId, newTopic);
+	public Topic updateTopic(@PathVariable("tid") int topicId, @RequestBody Topic newTopic) {
+		return topicService.updateTopic(topicId, newTopic);
 	}
 	
 }

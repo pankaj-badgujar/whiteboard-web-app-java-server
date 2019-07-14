@@ -46,9 +46,10 @@ public class LessonService {
 		lessonRepository.deleteById(lessonId);
 	}
 	
-	public void updateLesson(Integer lessonId,Lesson lesson) {
+	public Lesson updateLesson(Integer lessonId,Lesson lesson) {
 		Lesson lessonToBeUpdated = lessonRepository.findLessonById(lessonId);
 		lessonToBeUpdated.setTitle(lesson.getTitle());
 		lessonRepository.save(lessonToBeUpdated);
+		return lessonToBeUpdated;
 	}
 }

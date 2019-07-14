@@ -54,10 +54,11 @@ public class CourseService {
 		courseRepository.deleteById(courseId);
 	}
 
-	public void updateCourse(int cid, Course course) {
+	public Course updateCourse(int cid, Course course) {
 		Course courseToBeUpdated = courseRepository.findCourseById(cid);
 		courseToBeUpdated.setTitle(course.getTitle());
 		courseRepository.save(courseToBeUpdated);
+		return courseToBeUpdated;
 	}
 
 }

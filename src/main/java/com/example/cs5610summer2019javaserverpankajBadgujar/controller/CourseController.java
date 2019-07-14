@@ -47,18 +47,16 @@ public class CourseController {
 	}
 
 	@DeleteMapping("/api/courses/{cid}")
-	List<Course> deleteCourse(@PathVariable("cid") int cid) {
+	void deleteCourse(@PathVariable("cid") int cid) {
 		courseService.deleteCourse(cid);
-		return courseService.findAllCourses();
 		
 //		service.deleteCourse(cid);
 //		return service.findAllCourses();
 	}
 
 	@PutMapping("/api/courses/{cid}")
-	List<Course> updateCourse(@PathVariable("cid") int cid, @RequestBody Course course) {
-		courseService.updateCourse(cid, course);
-		return courseService.findAllCourses();
+	Course updateCourse(@PathVariable("cid") int cid, @RequestBody Course course) {
+		return courseService.updateCourse(cid, course);
 		
 //		service.updateCourse(cid, course);
 //		return service.findAllCourses();
