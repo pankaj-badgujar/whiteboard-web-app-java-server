@@ -26,10 +26,9 @@ public class WidgetController {
 	@Autowired
 	WidgetService widgetService;
 	
-	@PostMapping("/api/widgets")
-	List<Widget> createWidget(@RequestBody Widget widget) {
-		widgetService.createWidget(widget);
-		return widgetService.findAllWidgets();
+	@PostMapping("/api/topics/{tid}/widgets")
+	List<Widget> createWidget(@PathVariable("tid") int topicId, @RequestBody Widget widget) {
+		return widgetService.createWidget(topicId,widget);
 //		service.createWidget(widget);
 //		return service.findAllWidgets();
 	}

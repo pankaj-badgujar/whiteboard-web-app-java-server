@@ -44,8 +44,7 @@ public class LessonController {
 	
 	@PostMapping("/api/modules/{mid}/lessons/")
 	public List<Lesson> createLessonForModule(@PathVariable("mid") int moduleId, @RequestBody Lesson newLesson){
-		lessonService.createLessonForModule(moduleId, newLesson);
-		return lessonService.findAllLessonsForModule(moduleId);
+		return lessonService.createLessonForModule(moduleId, newLesson);
 	}
 	
 	@PutMapping("/api/lessons/{lid}")

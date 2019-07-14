@@ -34,8 +34,7 @@ public class CourseController {
 
 	@PostMapping("/api/courses")
 	List<Course> createCourse(@RequestBody Course course) {
-		courseService.createCourse(course);
-		return courseService.findAllCourses();
+		return courseService.createCourse(course);
 //		service.createCourse(course);
 //		return service.findAllCourses();
 	}

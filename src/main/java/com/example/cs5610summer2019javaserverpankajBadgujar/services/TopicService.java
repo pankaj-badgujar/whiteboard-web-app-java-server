@@ -30,9 +30,10 @@ public class TopicService {
 		return topicRepository.findTopicById(topicId);
 	}
 	
-	public void createTopic(int lessonId, Topic newTopic) {
+	public List<Topic> createTopic(int lessonId, Topic newTopic) {
 		newTopic.setLesson(lessonRepository.findLessonById(lessonId));
 		topicRepository.save(newTopic);
+		return this.findAllTopicsForLesson(lessonId);
 	}
 	
 	public void deleteTopic(int topicId) {

@@ -34,8 +34,9 @@ public class CourseService {
 		return courseRepository.findAllCourses();
 	}
 
-	public void createCourse(Course course) {
+	public List<Course> createCourse(Course course) {
 		courseRepository.save(course);
+		return this.findAllCourses();
 	}
 
 	public Course findCourseById(int courseId) {

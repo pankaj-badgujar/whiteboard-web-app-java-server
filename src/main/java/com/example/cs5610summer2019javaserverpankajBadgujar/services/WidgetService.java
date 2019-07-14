@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.cs5610summer2019javaserverpankajBadgujar.models.Widget;
+import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.TopicRepository;
 import com.example.cs5610summer2019javaserverpankajBadgujar.repositories.WidgetRepository;
 
 @Service
@@ -13,9 +14,14 @@ public class WidgetService {
 	
 	@Autowired
 	WidgetRepository widgetRepository;
-
-	public void createWidget(Widget widget) {
+	
+	@Autowired
+	TopicRepository topicRepository;
+	
+	public List<Widget> createWidget(int topicId, Widget widget) {
+		widget.setTopic(topicRepository.findTopicById(topicId));
 		widgetRepository.save(widget);
+		return this.findAllWidgetsForTopic(topicId);
 	}
 	
 	

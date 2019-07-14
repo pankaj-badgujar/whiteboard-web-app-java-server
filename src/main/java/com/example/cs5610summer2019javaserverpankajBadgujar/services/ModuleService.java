@@ -41,10 +41,10 @@ public class ModuleService {
 	}
 	
 
-	public void createModuleForCourse(Integer courseId,  Module newModule){
-		Course courseToBeAddedTo = courseRepository.findCourseById(courseId);
-		newModule.setCourse(courseToBeAddedTo);
+	public List<Module> createModuleForCourse(Integer courseId,  Module newModule){
+		newModule.setCourse(courseRepository.findCourseById(courseId));
 		moduleRepository.save(newModule);		
+		return this.findAllModulesForCourse(courseId);
 	}
 	
 

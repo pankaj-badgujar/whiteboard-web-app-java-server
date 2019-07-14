@@ -35,10 +35,11 @@ public class LessonService {
 		return lessonRepository.findLessonById(lessonId);
 	}
 	
-	public void createLessonForModule(int moduleId, Lesson newLesson) {
-		Module moduleToBeAddedTo = moduleRepository.findModuleById(moduleId);
-		newLesson.setModule(moduleToBeAddedTo);
+	public List<Lesson> createLessonForModule(int moduleId, Lesson newLesson) {
+		newLesson.setModule(moduleRepository.findModuleById(moduleId));
 		lessonRepository.save(newLesson);
+		return this.findAllLessonsForModule(moduleId);
+		
 	}
 	
 	public void deleteLesson(Integer lessonId) {

@@ -38,8 +38,8 @@ public class TopicController {
 	}
 
 	@PostMapping("/api/lessons/{lid}/topics")
-	public void createTopic(@PathVariable("lid") int lessonId, @RequestBody Topic newTopic) {
-		topicService.createTopic(lessonId, newTopic);
+	public List<Topic> createTopic(@PathVariable("lid") int lessonId, @RequestBody Topic newTopic) {
+		return topicService.createTopic(lessonId, newTopic);
 	}
 	
 	@DeleteMapping("/api/topics/{tid}")

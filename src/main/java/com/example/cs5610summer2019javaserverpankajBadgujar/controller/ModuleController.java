@@ -39,8 +39,8 @@ public class ModuleController {
 	
 	@PostMapping("/api/courses/{cid}/modules")
 	public List<Module> createModuleForCourse(@PathVariable("cid") Integer courseId, @RequestBody Module newModule){
-		moduleService.createModuleForCourse(courseId, newModule);
-		return moduleService.findAllModulesForCourse(courseId);
+		return moduleService.createModuleForCourse(courseId, newModule);
+		
 	}
 	
 	@DeleteMapping("/api/modules/{mid}")
